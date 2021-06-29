@@ -34,7 +34,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution URL](https://worldbook-rishi.netlify.app)
+- Live Site URL: [Live Site URL](https://worldbook-rishi.netlify.app)
 
 ## My process
 
