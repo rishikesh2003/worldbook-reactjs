@@ -30,11 +30,10 @@ const CountryHolder = () => {
             setSearch((search) => e.target.value);
           }}
         />
-        {/* eslint-disable-next-line */}
-        <a className="button" href="#">
+        {/* <a className="button" href="#">
           Filter By Region &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
           <i class="fas fa-caret-down"></i>
-        </a>
+        </a> */}
       </div>
     );
   };
@@ -61,9 +60,10 @@ const CountryHolder = () => {
     <div>
       <Header />
       <div className={"country-holder"}>
-        {filteredData.map((item) => (
+        {filteredData.map((item, index) => (
           <CountryCard
-            countryName={item.name}
+            key={index}
+            countryName={String(index + 1) + ". " + item.name}
             imgSource={item.flag}
             population={item.population}
             region={item.region}
