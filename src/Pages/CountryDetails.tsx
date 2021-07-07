@@ -56,7 +56,7 @@ const CountryDetails :React.FC<Props> = ({match}) => {
   }, []);
   const history = useHistory();
   const params = match.params
-  const paramName : string  = params.name.slice(3).toLowerCase()
+  const paramName : string  = params.name.split(' ')[1].toLowerCase()
   const [data, setData] = useState<IData>(defaulData)
   const [loading, setLoading ] = useState<boolean>(true)
   const getData = async() : Promise<void> => {
