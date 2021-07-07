@@ -1,23 +1,69 @@
-import React, { useEffect, useState } from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from "../Components/Navbar";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import axios from 'axios'
 
-const CountryDetails = ({ match }) => {
-  const history = useHistory();
-  const params = match.params;
+interface IParams {
+  name : string,
+}
+
+interface IMatch {
+  params : IParams
+}
+
+interface Props {
+  match : IMatch
+}
+
+interface IItem {
+  name : string,
+}
+
+interface IData {
+  name : string,
+  flag : string,
+  nativeName : string,
+  population : string,
+  region : string,
+  subregion : string,
+  capital : string,
+  topLevelDomain : string,
+  currencies : Array<IItem>,
+  languages : Array<IItem>
+}
+
+
+
+const defaulData : IData = {
+  name : '',
+  flag : '',
+  nativeName : '',
+  population : '',
+  region : '',
+  subregion : '',
+  capital : '',
+  topLevelDomain : '',
+  currencies : [{
+    name : ''
+  }],
+  languages : [{
+    name : ''
+  }]
+}
+const CountryDetails :React.FC<Props> = ({match}) => {
   useEffect(() => {
-    getData();
+    getData()
   }, []);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const getData = async () => {
-    const initData =
-      await axios.get(`https://restcountries.eu/rest/v2/name/${params.name}?fullText=true
-    `);
-    setData(initData.data[0]);
-    setLoading(false);
-  };
+  const history = useHistory();
+  const params = match.params
+  const paramName : string  = params.name.slice(3).toLowerCase()
+  const [data, setData] = useState<IData>(defaulData)
+  const [loading, setLoading ] = useState<boolean>(true)
+  const getData = async() : Promise<void> => {
+    const initData = await axios.get(`https://restcountries.eu/rest/v2/name/${paramName}?fullText=true`)
+    await setData(initData.data[0])
+    await setLoading(false)
+  }
   if (loading) {
     return (
       <div className="loader-container">
@@ -39,7 +85,7 @@ const CountryDetails = ({ match }) => {
           }}
           className="button button1"
         >
-          <i class="fas fa-long-arrow-alt-left"></i> &nbsp;&nbsp;Back
+          <i className="fas fa-long-arrow-alt-left"></i> &nbsp;&nbsp;Back
         </a>
       </div>
       <div className="content">
@@ -87,14 +133,14 @@ const CountryDetails = ({ match }) => {
               <span>
                 <strong>Top Level Domain: </strong>
               </span>
-              {data.topLevelDomain[0]}
+              {data.topLevelDomain}
             </p>
             <p>
               <span>
                 <strong>Currency: </strong>
               </span>
               {data.currencies.map((item, index) => (
-                <span>{(index ? ", " : " ") + item.name}</span>
+                <span key={index}>{(index ? ", " : " ") + item.name}</span>
               ))}
             </p>
             <p>
@@ -102,7 +148,7 @@ const CountryDetails = ({ match }) => {
                 <strong>Languages: </strong>
               </span>
               {data.languages.map((item, index) => (
-                <span>{(index ? ", " : " ") + item.name}</span>
+                <span key={index}>{(index ? ", " : " ") + item.name}</span>
               ))}
             </p>
           </div>
