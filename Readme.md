@@ -40,6 +40,7 @@ Users should be able to:
 
 ### Built with
 
+- Typescript
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
