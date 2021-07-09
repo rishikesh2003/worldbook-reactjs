@@ -1,23 +1,21 @@
 import React, {useState, useEffect} from "react";
 import Navbar from "../Components/Navbar";
 import { useHistory } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 
-interface IParams {
-  name : string,
-}
 
-interface IMatch {
-  params : IParams
-}
 
 interface Props {
-  match : IMatch
-}
+  match : {
+    params : {
+      name : string
+    };
+  };
+};
 
 interface IItem {
   name : string,
-}
+};
 
 interface IData {
   name : string,
@@ -29,8 +27,8 @@ interface IData {
   capital : string,
   topLevelDomain : string,
   currencies : Array<IItem>,
-  languages : Array<IItem>
-}
+  languages : Array<IItem>,
+};
 
 
 
@@ -48,21 +46,21 @@ const defaulData : IData = {
   }],
   languages : [{
     name : ''
-  }]
-}
+  }],
+};
 const CountryDetails :React.FC<Props> = ({match}) => {
   useEffect(() => {
     getData()
   }, []);
   const history = useHistory();
-  const params = match.params
-  const paramName : string  = params.name.split(' ')[1].toLowerCase()
-  const [data, setData] = useState<IData>(defaulData)
-  const [loading, setLoading ] = useState<boolean>(true)
+  const params = match.params;
+  const paramName : string  = params.name.split(' ').slice(1 , params.name.length).join(' ').toLowerCase();
+  const [data, setData] = useState<IData>(defaulData);
+  const [loading, setLoading ] = useState<boolean>(true);
   const getData = async() : Promise<void> => {
-    const initData = await axios.get(`https://restcountries.eu/rest/v2/name/${paramName}?fullText=true`)
-    await setData(initData.data[0])
-    await setLoading(false)
+    const initData = await axios.get(`https://restcountries.eu/rest/v2/name/${paramName}?fullText=true`);
+    await setData(initData.data[0]);
+    await setLoading(false);
   }
   if (loading) {
     return (
@@ -70,7 +68,7 @@ const CountryDetails :React.FC<Props> = ({match}) => {
         <div className="loader"></div>
       </div>
     );
-  }
+  };
   return (
     <div>
       <Navbar />

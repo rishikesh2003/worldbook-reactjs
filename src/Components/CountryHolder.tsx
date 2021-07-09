@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CountryCard from "./CountryCard";
 
+// interface for search filtering
+
 interface CountryInterface {
   name : string,
-}
+};
 
+// interface for data fetched from API
 interface IData {
   name : string,
   flag : string,
   population : string,
   region : string,
   capital : string,
-}
+};
+
+// CountryHolder : Component
 const CountryHolder : React.FC = () => {
   useEffect(() => {
     getData();
@@ -41,6 +46,7 @@ const CountryHolder : React.FC = () => {
             setSearch(e.target.value);
           }}
         />
+        {/* still not implemented filter feature */}
         {/* <a className="button" href="#">
           Filter By Region &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
           <i class="fas fa-caret-down"></i>
