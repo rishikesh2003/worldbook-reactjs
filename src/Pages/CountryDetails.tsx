@@ -58,9 +58,14 @@ const CountryDetails :React.FC<Props> = ({match}) => {
   const [data, setData] = useState<IData>(defaulData);
   const [loading, setLoading ] = useState<boolean>(true);
   const getData = async() : Promise<void> => {
-    const initData = await axios.get(`https://restcountries.eu/rest/v2/name/${paramName}?fullText=true`);
-    await setData(initData.data[0]);
-    await setLoading(false);
+    try {
+      const initData = await axios.get(`https://restcountries.eu/rest/v2/name/${paramName}?fullText=true`);
+      await setData(initData.data[0]);
+      await setLoading(false);
+    } catch(error) {
+      setLoading(false);
+      console.error(error);
+    };
   }
   if (loading) {
     return (

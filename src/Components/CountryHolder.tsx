@@ -27,9 +27,14 @@ const CountryHolder : React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const getData = async () => {
-    const initData = await axios.get("https://restcountries.eu/rest/v2/all");
-    setData(initData.data);
-    setLoading(false);
+    try {
+      const initData = await axios.get("https://restcountries.eu/rest/v2/all");
+      setData(initData.data);
+      setLoading(false);
+    } catch(error) {
+      setLoading(false);
+      console.error(error);
+    };
   };
   const filteredData = data.filter((country : CountryInterface) =>
     country.name.toLowerCase().includes(search.toLowerCase())
