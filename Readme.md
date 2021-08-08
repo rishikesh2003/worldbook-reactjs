@@ -43,9 +43,9 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 
-### Continued development
+### Todo
 
-The countries are listed in a single page. I'm thinking of adding pagination to it.
+- Add a method to filter country by region
 
 ## Author
 

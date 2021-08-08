@@ -21,7 +21,7 @@ body {
   padding: 40px 0px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -177,4 +177,14 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.input-holder {
+  position: relative;
+}
+
+.input-holder img {
+  position: absolute;
+  top: 10px;
+  right: 5px;
 }

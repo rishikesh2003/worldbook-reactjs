@@ -42,20 +42,18 @@ const CountryHolder : React.FC = () => {
   const Header = () => {
     return (
       <div className={"header"}>
-        <input
-          autoFocus={true}
-          value={search}
-          type={"text"}
-          placeholder="&#xF002;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Search for a country..."
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        />
-        {/* still not implemented filter feature */}
-        {/* <a className="button" href="#">
-          Filter By Region &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-          <i class="fas fa-caret-down"></i>
-        </a> */}
+        <div className="input-holder">
+          <input
+            autoFocus={true}
+            value={search}
+            type={"text"}
+            placeholder="Search for a country..."
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+          <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png" alt='search icon'/>
+        </div>
       </div>
     );
   };
