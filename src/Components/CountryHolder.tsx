@@ -23,6 +23,8 @@ const CountryHolder : React.FC = () => {
     getData();
   }, []);
   const [data, setData] = useState<IData[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const postsPerpage = 12
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -75,11 +77,34 @@ const CountryHolder : React.FC = () => {
       </div>
     );
   }
+  const indexOfLastPost : number = currentPage * postsPerpage;
+  const indexOfFirstPost : number = indexOfLastPost - postsPerpage;
+  const currentPosts = filteredData.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPosts : number = data.length;
+  const pageNumbers : Array<number> = [];
+  for(let i = 0; i < Math.ceil(totalPosts / postsPerpage); i ++ ){
+    pageNumbers.push(i + 1);
+  }
+  const Footer : React.FC = () => {
+    return (
+      <div className={'footer'}>
+        {pageNumbers.map(num => (
+          <div onClick={() => {
+            setCurrentPage(num);
+          }} className={'number'}>
+            {num}
+          </div>
+        ))};
+      </div>
+    )
+  };
+
+
   return (
     <div>
       <Header />
       <div className={"country-holder"}>
-        {filteredData.map((item, index) => (
+        {currentPosts.map((item, index) => (
           <CountryCard
             key={index}
             countryName={String(index + 1) + ". " + item.name}
@@ -90,6 +115,7 @@ const CountryHolder : React.FC = () => {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
