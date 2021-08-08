@@ -195,6 +195,7 @@ body {
   align-items: center;
   justify-content: center;
   padding-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .number {
@@ -203,4 +204,8 @@ body {
   margin: 2px;
   cursor: pointer;
   border-radius: 10px;
+}
+
+.main-header {
+  text-align: center;
 }

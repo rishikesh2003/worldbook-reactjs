@@ -24,7 +24,7 @@ const CountryHolder : React.FC = () => {
   }, []);
   const [data, setData] = useState<IData[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const postsPerpage = 12
+  const postsPerpage = 28;
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -85,7 +85,7 @@ const CountryHolder : React.FC = () => {
   for(let i = 0; i < Math.ceil(totalPosts / postsPerpage); i ++ ){
     pageNumbers.push(i + 1);
   }
-  const Footer : React.FC = () => {
+  const Pagination : React.FC = () => {
     return (
       <div className={'footer'}>
         {pageNumbers.map(num => (
@@ -94,7 +94,7 @@ const CountryHolder : React.FC = () => {
           }} className={'number'}>
             {num}
           </div>
-        ))};
+        ))}
       </div>
     )
   };
@@ -103,6 +103,8 @@ const CountryHolder : React.FC = () => {
   return (
     <div>
       <Header />
+      <Pagination />
+      <h1 className={'main-header'}>Page {currentPage}</h1>
       <div className={"country-holder"}>
         {currentPosts.map((item, index) => (
           <CountryCard
@@ -115,7 +117,6 @@ const CountryHolder : React.FC = () => {
           />
         ))}
       </div>
-      <Footer />
     </div>
   );
 };
