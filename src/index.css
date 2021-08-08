@@ -200,8 +200,10 @@ body {
 
 .number {
   padding: 7px 10px;
-  border: 2px solid blue;
-  margin: 2px;
+  box-shadow: -1px 1px 14px 0px rgba(192, 192, 192, 0.75);
+  -webkit-box-shadow: -1px 1px 14px 0px rgba(192, 192, 192, 0.75);
+  -moz-box-shadow: -1px 1px 14px 0px rgba(192, 192, 192, 0.75);
+  margin: 4px;
   cursor: pointer;
   border-radius: 10px;
 }
