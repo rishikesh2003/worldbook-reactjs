@@ -49,24 +49,25 @@ const defaulData : IData = {
   }],
 };
 const CountryDetails :React.FC<Props> = ({match}) => {
-  useEffect(() => {
-    getData()
-  }, []);
+  
   const history = useHistory();
   const params = match.params;
   const paramName : string  = params.name.split(' ').slice(1 , params.name.length).join(' ').toLowerCase();
   const [data, setData] = useState<IData>(defaulData);
   const [loading, setLoading ] = useState<boolean>(true);
-  const getData = async() : Promise<void> => {
-    try {
-      const initData = await axios.get(`https://restcountries.eu/rest/v2/name/${paramName}?fullText=true`);
-      await setData(initData.data[0]);
-      await setLoading(false);
-    } catch(error) {
-      setLoading(false);
-      console.error(error);
-    };
-  }
+  useEffect(() => {
+    const getData = async() : Promise<void> => {
+      try {
+        const initData = await axios.get(`https://restcountries.com/v2/name/${paramName}?fullText=true`);
+        await setData(initData.data[0]);
+        await setLoading(false);
+      } catch(error) {
+        setLoading(false);
+        console.error(error);
+      };
+    }
+    getData()
+  }, [paramName]);
   if (loading) {
     return (
       <div className="loader-container">

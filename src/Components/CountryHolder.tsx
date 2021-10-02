@@ -30,7 +30,7 @@ const CountryHolder : React.FC = () => {
 
   const getData = async () => {
     try {
-      const initData = await axios.get("https://restcountries.eu/rest/v2/all");
+      const initData = await axios.get("https://restcountries.com/v2/all");
       setData(initData.data);
       setLoading(false);
     } catch(error) {
