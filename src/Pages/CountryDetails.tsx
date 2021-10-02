@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Navbar from "../Components/Navbar";
-import { useHistory } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import axios from 'axios';
-
 
 
 interface Props {
@@ -50,7 +49,6 @@ const defaulData : IData = {
 };
 const CountryDetails :React.FC<Props> = ({match}) => {
   
-  const history = useHistory();
   const params = match.params;
   const paramName : string  = params.name.split(' ').slice(1 , params.name.length).join(' ').toLowerCase();
   const [data, setData] = useState<IData>(defaulData);
@@ -82,15 +80,9 @@ const CountryDetails :React.FC<Props> = ({match}) => {
         style={{ justifyContent: "unset", padding: "40px 24px" }}
         className="header"
       >
-        {/* eslint-disable-next-line */}
-        <a
-          onClick={() => {
-            history.push("/");
-          }}
-          className="button button1"
-        >
+        <Link to='/' className='button button1'>
           <i className="fas fa-long-arrow-alt-left"></i> &nbsp;&nbsp;Back
-        </a>
+        </Link>
       </div>
       <div className="content">
         <div className="image">
