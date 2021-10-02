@@ -88,8 +88,8 @@ const CountryHolder : React.FC = () => {
   const Pagination : React.FC = () => {
     return (
       <div className={'footer'}>
-        {pageNumbers.map(num => (
-          <div onClick={() => {
+        {pageNumbers.map((num, index) => (
+          <div key={index} onClick={() => {
             setCurrentPage(num);
           }} className={'number'}>
             {num}
@@ -109,7 +109,8 @@ const CountryHolder : React.FC = () => {
         {currentPosts.map((item, index) => (
           <CountryCard
             key={index}
-            countryName={String(index + 1) + ". " + item.name}
+            num={String(index + 1)}
+            countryName={item.name}
             imgSource={item.flag}
             population={item.population}
             region={item.region}

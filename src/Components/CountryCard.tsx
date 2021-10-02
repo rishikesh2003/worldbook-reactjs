@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 interface Props {
+  num : string,
   countryName : string,
   imgSource : string,
   population : string,
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const CountryCard :React.FC<Props> = (props) => {
-  const history = useHistory();
+ const history = useHistory();
   return (
     <div
       onClick={() => {
@@ -20,7 +21,7 @@ const CountryCard :React.FC<Props> = (props) => {
     >
       <img src={props.imgSource} alt="flag" />
       <div className={"main-text"}>
-        <p className={"name"}>{props.countryName}</p>
+        <p className={"name"}>{props.num}. {props.countryName}</p>
         <p>
           <span>
             <strong>Population: </strong>

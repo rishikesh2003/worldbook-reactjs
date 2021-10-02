@@ -50,7 +50,7 @@ const defaulData : IData = {
 const CountryDetails :React.FC<Props> = ({match}) => {
   
   const params = match.params;
-  const paramName : string  = params.name.split(' ').slice(1 , params.name.length).join(' ').toLowerCase();
+  const paramName : string =  params.name;
   const [data, setData] = useState<IData>(defaulData);
   const [loading, setLoading ] = useState<boolean>(true);
   useEffect(() => {
